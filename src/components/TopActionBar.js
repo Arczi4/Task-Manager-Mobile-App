@@ -1,9 +1,17 @@
-import React from 'react'
-import { View, StyleSheet, Text} from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, Button} from 'react-native'
 import Icon from "react-native-vector-icons/FontAwesome";
+import Modal from 'react-native-modal';
+import TaskForm from './TaskForm';
 
 
 const TopActionBar = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  
+	const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.top_bar}>
 			<View style={styles.add_button}>
@@ -12,11 +20,18 @@ const TopActionBar = () => {
           backgroundColor="transparent"
           color="green"
           size={50}
-          onPress={() => {
-						console.log('aaa')
-          }}
+          onPress={toggleModal}
         />
       </View>
+			<Modal
+        isVisible={isModalVisible}>
+        <View>
+          <TaskForm />
+          <View>
+            <Button title="Hide modal" onPress={toggleModal} />
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }

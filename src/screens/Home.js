@@ -1,8 +1,9 @@
 import React from "react";
 import { View, StyleSheet} from 'react-native'
 import TopActionBar from '../components/TopActionBar'
+import TaskForm from "../components/TaskForm";
 
-export const Home = () => {
+const Home = () => {
   return (
     <View style={styles.container}>
       <TopActionBar></TopActionBar>
