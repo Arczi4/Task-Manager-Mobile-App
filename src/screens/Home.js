@@ -1,13 +1,28 @@
-import React from "react";
-import { View, StyleSheet} from 'react-native'
-import TopActionBar from '../components/TopActionBar'
-import TaskForm from "../components/TaskForm";
+import React, { useState } from "react";
+import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import TopActionBar from "../components/TopActionBar";
+import Task from "../components/Task";
 
 const Home = () => {
+  const [arrayOfTasks, setArrayOfTasks] = useState(Array());
+
+  var arrayOfObjects = [
+    { coffee: "Americano", size: "Medium" },
+    { coffee: "Espresso", size: "Single" },
+  ];
   return (
-    <View style={styles.container}>
-      <TopActionBar></TopActionBar>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <TopActionBar
+        arrayOfTasks={arrayOfTasks}
+        setArrayOfTasks={setArrayOfTasks}
+      />
+      <ScrollView>
+        {/* {Array(arrayOfTasks.length).fill(<Task />)} */}
+        {arrayOfTasks.map(({ title, description }) => {
+          return <Task title={title} description={description} />;
+        })}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
