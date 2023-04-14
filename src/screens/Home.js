@@ -5,7 +5,7 @@ import Task from "../components/Task";
 
 const Home = () => {
   const [arrayOfTasks, setArrayOfTasks] = useState(Array());
-
+  var index = 0;
   return (
     <SafeAreaView style={styles.container}>
       <TopActionBar
@@ -13,8 +13,10 @@ const Home = () => {
         setArrayOfTasks={setArrayOfTasks}
       />
       <ScrollView>
+        {/* {Array(arrayOfTasks.length).fill(<Task />)} */}
         {arrayOfTasks.map((task) => {
-          return <Task task={task} />;
+          index++;
+          return <Task key={index} task={task} />;
         })}
       </ScrollView>
     </SafeAreaView>
